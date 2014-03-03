@@ -1,0 +1,2 @@
+# mount shared directory with permissions that work for me, no more 777 perms on files
+work /home/sk/work/                         vboxsf rw,uid=500,gid=500,fmode=755,dmode=755,umask=0000 0 0
