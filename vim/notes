@@ -1,0 +1,9 @@
+To insert spaces instead of tabs, set expandtab 
+    :set expandtab
+
+To set amount of spaces in a tab, set tabstop
+    :set tabstop=2
+
+To replace existing tabs, use retab
+    :retab
+
