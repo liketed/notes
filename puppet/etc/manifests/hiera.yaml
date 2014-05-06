@@ -1,0 +1,8 @@
+---
+:backend:
+  - yaml
+:hierarchy:
+  - test
+
+:yaml:
+  :datadir: /opt/notes/puppet/etc/manifests/hiera/
