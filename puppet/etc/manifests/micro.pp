@@ -1,0 +1,27 @@
+stage {'first':
+  before => Stage['main'],
+}
+class pre_env {
+  file { '/selinux/enforce':
+    ensure => absent,
+  }
+  file {'/etc/selinux/config':
+    ensure  => file,
+    content => 'SELINUX=disabled',
+  }
+  if $::operatingsystemmajrelease == '6' {
+    notify{'OS 6': }
+  }
+  # Remove default repositories
+#  ensure_resource('file', '/etc/yum.repos.d/CentOS-Base.repo', { 'ensure' => 'present', 'content' => '' })
+#  ensure_resource('file', '/etc/yum.repos.d/CentOS-Debuginfo.repo', { 'ensure' => 'present', 'content' => '' })
+#  ensure_resource('file', '/etc/yum.repos.d/CentOS-Media.repo', { 'ensure' => 'present', 'content' => '' })
+#  ensure_resource('file', '/etc/yum.repos.d/CentOS-Vault.repo', { 'ensure' => 'present', 'content' => '' })
+
+}
+
+class {'pre_env':
+  stage => first,
+}
+
+hiera_include('classes')
