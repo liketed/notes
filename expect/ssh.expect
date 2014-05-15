@@ -1,0 +1,13 @@
+#!/usr/bin/expect
+## usage: $ expect ssh.expect hostname
+spawn ssh -o StrictHostKeyChecking=no [ lindex $argv 0 ]
+send -- "sudo -s\r"
+expect "*username:*"
+send -- "Password\r"
+expect "*#*"
+send -- "command to execute\r"
+expect "*#*"
+send -- "exit\r"
+expect "*~]*"
+send -- "exit\r"
+expect eof
