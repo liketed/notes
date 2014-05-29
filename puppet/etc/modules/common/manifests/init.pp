@@ -4,5 +4,5 @@ class common {
   # Restore mdadm config
   class { common::mdadm :}
   # 
-  #class { common::something :}
+  class { common::samba :}
 }
