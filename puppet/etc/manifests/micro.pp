@@ -1,6 +1,9 @@
 stage {'first':
   before => Stage['main'],
 }
+Package {
+      allow_virtual => true,
+    }
 class pre_env {
   file { '/selinux/enforce':
     ensure => absent,
