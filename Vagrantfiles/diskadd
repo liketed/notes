@@ -1,0 +1,27 @@
+  config.vm.define "centos510" do |centos510|
+    file_to_disk = File.realpath( "." ).to_s + "/disk.vdi"
+
+    if ARGV[0] == "up" && ! File.exist?(file_to_disk) 
+       config.vm.provider :virtualbox do |vb|
+       puts "Creating 5GB disk #{file_to_disk}."
+       vb.customize [
+            'createhd', 
+            '--filename', file_to_disk, 
+            '--format', 'VDI', 
+            '--size', 5000 * 1024 # 5 GB
+            ] 
+       vb.customize [
+            'storageattach', :id, 
+            '--storagectl', 'IDE Controller', 
+            '--port', 1, '--device', 1, 
+            '--type', 'hdd', '--medium', 
+            file_to_disk
+            ]
+       end
+    end
+    centos510.vm.box = "centos510_64"
+    centos510.vm.box_url = "http://puppet-vagrant-boxes.puppetlabs.com/centos-510-x64-virtualbox-puppet.box"
+    centos510.vm.network :forwarded_port, guest: 22, host: 2244, id: "ssh"
+
+  end
+end
