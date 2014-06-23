@@ -1,0 +1,2 @@
+logger -p local5.error "test"
+
