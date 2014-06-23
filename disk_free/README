@@ -1,0 +1,7 @@
+Subfolders in current folder, sorted by size
+
+    sudo find . -maxdepth 1 -type d ! -name . -exec du -sh '{}' \; | sort -h 
+
+Still not finding where space is taken?
+
+    lsof / | grep deleted
