@@ -1,0 +1,7 @@
+reset flapping dell drac
+
+    racadm racreset soft -u root -p password
+    RAC reset operation initiated successfully. It may take up to a minute for the
+    RAC to come back online again.
+
+
