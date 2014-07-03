@@ -5,3 +5,9 @@ Subfolders in current folder, sorted by size
 Still not finding where space is taken?
 
     lsof / | grep deleted
+
+
+
+Random note. check progress of ntfsresize using strace and grep.
+
+    strace -p $(pidof "ntfsresize") -e trace=write 2>&1 | grep 'write(1'
