@@ -1,0 +1,4 @@
+After removing a bridged network adaptor config file, the bridge needs manual removal
+
+    ip link set backend down
+    brctl delbr backend
