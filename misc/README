@@ -1,0 +1,15 @@
+Too many misc things
+iReserved blocks are blocks only useable by root processes to allow "important" processes to continue writing to the disk after other processes should stop. This gives the system a better chance of surviing a full disk.
+
+[root@sk]# tune2fs /dev/sda1  -l|grep 'Block\|Reserv'
+Block count:              512000
+Reserved block count:     76800
+Block size:               1024
+Reserved GDT blocks:      256
+Blocks per group:         8192
+Reserved blocks uid:      0 (user root)
+Reserved blocks gid:      0 (group root)
+[root@sk]# tune2fs -m 5 /dev/sda1 
+tune2fs 1.41.12 (17-May-2010)
+Setting reserved blocks percentage to 5% (25600 blocks)
+

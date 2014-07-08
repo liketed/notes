@@ -11,3 +11,12 @@ Still not finding where space is taken?
 Random note. check progress of ntfsresize using strace and grep.
 
     strace -p $(pidof "ntfsresize") -e trace=write 2>&1 | grep 'write(1'
+
+
+
+Cleaning space
+
+Delete files older than 15 days
+
+    find . -mtime +15 -delete
+
