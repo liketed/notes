@@ -3,3 +3,6 @@ Random note. check progress of ntfsresize using strace and grep.
     strace -p $(pidof "ntfsresize") -e trace=write 2>&1 | grep 'write(1' 
 
 
+Pipe view status
+
+dd if=/dev/hdb | (pv -s `fdisk -l /dev/hdb | grep -o '[0-9]*\{1\} MB' | awk '{print $1}'`m) | cat > hdb.img
