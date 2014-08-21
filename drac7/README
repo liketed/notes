@@ -4,4 +4,7 @@ reset flapping dell drac
     RAC reset operation initiated successfully. It may take up to a minute for the
     RAC to come back online again.
 
+update drac
+
+    racadm fwupdate -g -u -a 10.10.10.10 -d firmimg.d7
 
