@@ -1,0 +1,6 @@
+reset to origin for when I make an accidental commit
+
+git fetch origin
+git reset --hard origin/master
+
+
