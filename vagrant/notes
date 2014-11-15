@@ -1,0 +1,6 @@
+Create box of your own
+
+    /usr/bin/VBoxManage list vms
+    vagrant package --base centos7-rails_centos70_1416049436268_8811
+    vagrant box add centos7uptd /Users/sk/Vagrant/centos7-rails/package.box
+
