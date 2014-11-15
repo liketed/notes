@@ -1,6 +1,18 @@
+Customize vm or update vm
+
+    sudo yum update -y  # If kernel was updated, reboot and re-install vbox additions
+    sudo reboot         
+    # Upon reboot, you will see something like "Failed to mount folders in Linux guest. This is usually because the "vboxsf" file system is not available. "   
+    # This is because the vbox additions need to be reinstalled.
+    wget http://download.virtualbox.org/virtualbox/4.3.18/VBoxGuestAdditions_4.3.18.iso
+    sudo mount -o loop VBoxGuestAdditions_4.3.18.iso /media/
+    sudo /media/VBoxLinuxAdditions.run 
+    # The box is now ready to be packaged, you could test the above installation worked by rebooting again.
+
 Create box of your own
 
-    /usr/bin/VBoxManage list vms
+    /usr/bin/VBoxManage list vms   # OSX path, adjust to your OS.
     vagrant package --base centos7-rails_centos70_1416049436268_8811
     vagrant box add centos7uptd /Users/sk/Vagrant/centos7-rails/package.box
+    rm /Users/sk/Vagrant/centos7-rails/package.box # Cleanup disk space
 
