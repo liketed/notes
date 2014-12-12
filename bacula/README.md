@@ -15,3 +15,8 @@ Switch bacula db driver to connect to mysql:
     Enter to keep the current selection[+], or type selection number:
 
 
+
+One liners. You know... for lack of interaction with the console, I wish I could figure out more..
+
+    delete yes volume=test0001
+
