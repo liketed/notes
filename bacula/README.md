@@ -20,3 +20,4 @@ One liners. You know... for lack of interaction with the console, I wish I could
 
     delete yes volume=test0001
 
+    label storage=BackupStor Device=FileStorage drive=0 slot=0 Pool=Pool1 volume=Vol005
