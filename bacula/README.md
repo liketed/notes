@@ -34,3 +34,5 @@ One liners. You know... for lack of interaction with the console, I wish I could
     label storage=BackupStor Device=FileStorage drive=0 slot=0 Pool=Pool1 volume=Vol005
 
     delete jobid=14
+
+    update volume=Vol002 MaxVolBytes=140000000
