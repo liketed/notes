@@ -27,7 +27,7 @@ Move storages to separate partitions, now the volumes are all on separate pariti
      for i in {5..9}; do mv /data/backupstorage/Vol00${i} /data${i}/backupstorage/; ln -s /data${i}/backupstorage/Vol00${i} /data/backupstorage/Vol00${i}; done
 
 
-One liners. You know... for lack of interaction with the console, I wish I could figure out more..
+One liners. You know... for lack of interaction with the console.
 
     delete yes volume=test0001
 
@@ -36,3 +36,6 @@ One liners. You know... for lack of interaction with the console, I wish I could
     delete jobid=14
 
     update volume=Vol002 MaxVolBytes=140000000
+
+    update volume=Vol002 VolStatus=Append
+
