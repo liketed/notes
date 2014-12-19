@@ -33,9 +33,11 @@ One liners. You know... for lack of interaction with the console.
 
     label storage=BackupStor Device=FileStorage drive=0 slot=0 Pool=Pool1 volume=Vol005
 
-    delete jobid=14
+    delete jobid=112
+    for i in {113..120}; do echo delete yes jobid=$i ;done | bconsole
 
     update volume=Vol002 MaxVolBytes=140000000
 
     update volume=Vol002 VolStatus=Append
+
 
