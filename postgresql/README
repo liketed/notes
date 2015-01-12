@@ -1,0 +1,2 @@
+    ALTER ROLE davide WITH PASSWORD 'hu8jmn3';
+    SELECT usename, passwd FROM pg_shadow;
