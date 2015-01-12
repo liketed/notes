@@ -1,0 +1,4 @@
+Sort processes by memory used
+
+    ps -e -o pid,vsz,comm= | sort -n -k 2
+    ps --everyone --format=pid,vsz,comm= | sort --numeric-sort --key=2
