@@ -1,0 +1,18 @@
+So you're doing something on a server and see output like:
+
+    [root@server ~]# ./ESM_Firmware_XH6FX_LN_1.57.57_A00.BIN 
+    prelink: /bin/basename: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/cat: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/chgrp: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/chmod: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/chown: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/cp: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/cut: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/date: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/dd: at least one of file's dependencies has changed since prelinking
+    prelink: /bin/df: at least one of file's dependencies has changed since prelinking
+    
+
+The binaries need their prelink cache updated. 
+    
+    /usr/sbin/prelink -av -mR
