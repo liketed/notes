@@ -1,0 +1,4 @@
+I find it useful to sometimes have a prepared line to add my user to a centos machine, and forget the format too easily, keeps my uid consistent accross machines which are not config managed.
+
+    useradd -u 1999 -g 10 -s /bin/bash -c 'RocketUser'        -m -p '$6$oinXP6B$gM70pFAKEHASHLqMFdkY0/' username
+    useradd -u uid -g gid -s shell -c 'Comment' -m -p 'passwordhash' username
