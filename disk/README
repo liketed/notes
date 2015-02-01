@@ -6,3 +6,10 @@ Random note. check progress of ntfsresize using strace and grep.
 Pipe view status
 
 dd if=/dev/hdb | (pv -s `fdisk -l /dev/hdb | grep -o '[0-9]*\{1\} MB' | awk '{print $1}'`m) | cat > hdb.img
+
+
+Different way to view progress of a dd.
+
+    [root@mini ~]# dd if=/data3/admin/download/CentOS-7.0-1406-x86_64-DVD/CentOS-7.0-1406-x86_64-DVD.iso |pv| dd of=/dev/sdg bs=2048 
+    3.09GiB 0:15:40 [4.48MiB/s] [                                  <=>      ]
+
