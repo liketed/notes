@@ -1,0 +1,3 @@
+How to limit results from show processlist:
+
+    SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST where user='system user';
