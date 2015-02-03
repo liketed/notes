@@ -1,0 +1,22 @@
+How to show mounted drives:
+
+    C:\Users\person>net use
+    New connections will be remembered.
+    
+    
+    Status       Local     Remote                    Network
+    
+    -------------------------------------------------------------------------------
+    OK                     \\remote.share.example.com\Users
+                                                    Microsoft Windows Network
+    The command completed successfully.
+
+
+Mount a remote drive locally:
+
+    net use x: \\remote.share.example.com\Sharename
+
+
+This seems pretty comprehensive:
+
+    http://www.howtogeek.com/118452/how-to-map-network-drives-from-the-command-prompt-in-windows/
