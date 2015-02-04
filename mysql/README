@@ -1,3 +1,11 @@
 How to limit results from show processlist:
 
     SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST where user='system user';
+
+Check what is not sleeping:
+
+    SELECT ID,USER,DB,COMMAND,TIME,STATE FROM INFORMATION_SCHEMA.PROCESSLIST where command !='SLEEP';
+
+Check what is not sleeping on specific DB:
+
+    SELECT ID,USER,DB,COMMAND,TIME,STATE FROM INFORMATION_SCHEMA.PROCESSLIST where command !='SLEEP' and DB='schland';
