@@ -1,0 +1,5 @@
+Generate lots of puppet mysql permissions:
+
+    user='UserName'
+    for db in `cat databases`; do printf "\n      '$db' => {\n        user       => \"$user@%%.\${::domain}\",\n        table      => '$db.*',\n        privileges => [ 'SELECT','INSERT','UPDATE','DELETE','EXECUTE' ], },"; done; printf \\n
+
