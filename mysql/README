@@ -9,3 +9,15 @@ Check what is not sleeping:
 Check what is not sleeping on specific DB:
 
     SELECT ID,USER,DB,COMMAND,TIME,STATE FROM INFORMATION_SCHEMA.PROCESSLIST where command !='SLEEP' and DB='schland';
+
+
+
+Check to see if query have enabled:
+
+    SHOW VARIABLES LIKE 'have_query_cache';
+
+
+Check status of certain things:
+
+    show status;
+    show status like 'thread%';
