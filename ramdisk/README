@@ -1,0 +1,9 @@
+tmpfs disk will:
+ a) give disk full errors when full.
+ b) if ram is full may write to swap
+
+To setup TMPFS ramdisk:
+
+    mount -t tmpfs -o size=512m tmpfs /ramdisk
+
+
