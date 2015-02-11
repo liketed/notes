@@ -21,3 +21,9 @@ Check status of certain things:
 
     show status;
     show status like 'thread%';
+
+
+Skip replication statement:
+  
+    stop slave;SET GLOBAL sql_slave_skip_counter = 1;
+
