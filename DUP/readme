@@ -1,0 +1,40 @@
+Ever had DUPs on your network ping?
+
+
+    [sk@steve-centos ]$ ping -c 5 target-host.corp.example.com
+    PING target-host.corp.example.com (10.0.9.63) 56(84) bytes of data.
+    From firewall.remote.example.com (10.2.0.1): icmp_seq=1 Redirect Host(New nexthop: vpn1 (10.2.0.235))
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=1 ttl=61 time=17.8 ms
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=1 ttl=61 time=17.8 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=1 ttl=62 time=17.8 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=1 ttl=62 time=17.9 ms (DUP!)
+    From firewall.remote.example.com (10.2.0.1): icmp_seq=2 Redirect Host(New nexthop: vpn1.remote.example.com (10.2.0.235))
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=2 ttl=61 time=17.9 ms
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=2 ttl=61 time=17.9 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=2 ttl=62 time=17.9 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=2 ttl=62 time=17.9 ms (DUP!)
+    From firewall.remote.example.com (10.2.0.1): icmp_seq=3 Redirect Host(New nexthop: vpn1 (10.2.0.235))
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=3 ttl=61 time=17.3 ms
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=3 ttl=61 time=17.4 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=3 ttl=62 time=17.4 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=3 ttl=62 time=17.4 ms (DUP!)
+    From firewall.remote.example.com (10.2.0.1): icmp_seq=4 Redirect Host(New nexthop: vpn1.remote.example.com (10.2.0.235))
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=4 ttl=61 time=18.5 ms
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=4 ttl=61 time=18.5 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=4 ttl=62 time=18.5 ms (DUP!)
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=4 ttl=62 time=18.5 ms (DUP!)
+    From firewall.remote.example.com (10.2.0.1): icmp_seq=5 Redirect Host(New nexthop: vpn1 (10.2.0.235))
+    64 bytes from server-intra.corp.example.com (10.0.9.63): icmp_seq=5 ttl=61 time=17.4 ms
+    --- server-intra.corp.example.com ping statistics ---
+    5 packets transmitted, 5 received, +12 duplicates, 0% packet loss, time 4023ms
+
+
+What an annoying issue... Tcpdump on the target machine showed multiple packets with the same sequence number received and replied to, 
+
+    09:32:20.833991 IP 10.100.130.33 > 10.0.9.65: ICMP echo request, id 14118, seq 1, length 64
+    09:32:20.834011 IP 10.0.9.65 > 10.100.130.33: ICMP echo reply, id 14118, seq 1, length 64
+    09:32:20.833994 IP 10.100.130.33 > 10.0.9.65: ICMP echo request, id 14118, seq 1, length 64
+    09:32:20.834017 IP 10.0.9.65 > 10.100.130.33: ICMP echo reply, id 14118, seq 1, length 64
+    
+
+This target machine was a vm on a hyper-v host. Stopping Routing and Remote access service fixed the issue. The vms and the hyperv host were all running in the same subnet so routing was not needed.
