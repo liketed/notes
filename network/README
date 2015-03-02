@@ -2,3 +2,9 @@ After removing a bridged network adaptor config file, the bridge needs manual re
 
     ip link set backend down
     brctl delbr backend
+
+
+show which route matches for an IP address
+
+    ip route show to match 8.8.8.8
+
