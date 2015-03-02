@@ -44,6 +44,12 @@ Secondly: Auto write over volumes when none are free. We are currently not abidi
 
 
 One liners. You know... for lack of interaction with the console.
+Typically bacula will show you what options you can add to a command if you "tabtab"
+
+    delete "tabtab"
+    jobid=   pool=    volume=  
+
+What comes after the "tabtab" are your available options, which can be used like this:
 
     delete yes volume=test0001
 
@@ -56,4 +62,14 @@ One liners. You know... for lack of interaction with the console.
 
     update volume=Vol002 VolStatus=Append
 
+
+For when oneliners do not work.. use sql
+
+   postgres=# select mediaid from media where mediatype='Volume3' and volstatus='Error';
+   -bash-3.2$ psql bacula -t -c "select mediaid from media where mediatype='Volume3' and volstatus='Error';"
+
+
+Unfortunately I cannot access postgres from root account, and also cannot access bacula from postgres account, so we need some quote escaping
+
+    su - postgres -c "psql bacula -t -c \"select volumename from media where mediatype='Volume2' and volstatus='Error';\"" | awk {'print "delete yes volume="$1'} | /usr/sbin/bconsole 
 
