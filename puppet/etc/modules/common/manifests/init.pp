@@ -1,8 +1,9 @@
+# Assemble the common the stuff here 
 class common {
   # Install needed packages
   class { common::packages :}
-  # Restore mdadm config
-  class { common::mdadm :}
-  # 
+  # Configure samba server
   class { common::samba :}
+  # Disable firewall
+  class { common::firewalld :}
 }
