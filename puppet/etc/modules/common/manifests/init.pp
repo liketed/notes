@@ -6,4 +6,7 @@ class common {
   class { common::samba :}
   # Disable firewall
   class { common::firewalld :}
+  class { common::repo :}
+  class { common::noip :}
+
 }
