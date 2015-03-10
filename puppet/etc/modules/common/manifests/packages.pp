@@ -8,6 +8,7 @@ class common::packages {
 
   $defaultPackages = [
     'curl',
+    'gcc',
     'make',
     'mlocate',
     'rsync',
@@ -16,6 +17,7 @@ class common::packages {
     'vim-minimal',
     'vim-enhanced',
     'openssh-clients',
+    'wget',
     'yum-utils',
     ]
     package { $defaultPackages:, ensure => 'present' }
