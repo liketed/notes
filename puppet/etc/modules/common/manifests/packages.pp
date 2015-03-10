@@ -9,6 +9,7 @@ class common::packages {
   $defaultPackages = [
     'curl',
     'gcc',
+    'lsof',
     'make',
     'mlocate',
     'rsync',
