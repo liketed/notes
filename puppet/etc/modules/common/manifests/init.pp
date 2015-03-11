@@ -8,5 +8,6 @@ class common {
   class { common::firewalld :}
   class { common::repo :}
   class { common::noip :}
+  class { common::vagrant :}
 
 }
