@@ -9,6 +9,7 @@ class common::vagrant {
   $kernelPackages = [
     'kernel-devel.x86_64',
     'kernel-headers',
+    'mesa-libGL.x86_64',
     'dkms',
     ]
   package { $kernelPackages:,
