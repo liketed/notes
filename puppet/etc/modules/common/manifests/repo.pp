@@ -8,4 +8,12 @@ class common::repo {
     enabled  => true,
     gpgcheck => true,
   }
+  yumrepo{'virtualbox':
+    name     => 'virtualbox',
+    descr    => 'virtualbox repo',
+    baseurl  => 'http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch',
+    gpgkey   => 'https://www.virtualbox.org/download/oracle_vbox.asc',
+    enabled  => true,
+    gpgcheck => true,
+  }
 }

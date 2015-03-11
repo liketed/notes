@@ -8,6 +8,7 @@ class common::packages {
 
   $defaultPackages = [
     'curl',
+    'epel-release',
     'gcc',
     'lsof',
     'make',
