@@ -1,1 +1,9 @@
 alt + y    to delete to previous word separator ( like forward slash )
+
+
+
+use paste to add plusses and minuses to input:
+    
+    <cmd> | paste -sd+ | bc
+
+
