@@ -1,3 +1,17 @@
+List virtual machines:
+
+    vboxmanage list vms
+    "puppet_centos511_1425476426225_67690" {9dfc4e76-b092-4491-8232-17a38e18f98e}
+
+
+Variable for machine ID:
+
+    vmid=`vboxmanage list vms|grep puppet_|awk -F\" {'print $2'}`
+
+
+
+
+
 Customize vm or update vm
 
     sudo yum update -y  # If kernel was updated, reboot and re-install vbox additions
