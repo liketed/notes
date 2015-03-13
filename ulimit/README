@@ -1,0 +1,29 @@
+Not really ulimit issue, show threads per user:
+
+    for USER in `ps -ef | egrep -v '^UID' | awk '{ print $1 }' | sort -u`; do echo -n "$USER: "; ps -u $USER -L | wc -l; done | sort -rn -k2 
+
+
+Whats my SOFT ulimit allowed for ALL values?
+
+     ulimit -Sa
+
+
+
+How many processes have I running? 1 More than soft limit allowed.
+
+
+     ulimit -Su
+     1024
+     ps -u stkilduf -L|wc -l
+     1025
+     while true; do sleep 1; ps -u stkilduf -L|wc -l; done
+
+
+In another shell, create some process and watch the counter in the loop above change. Also see errors from when no more processes are allowed, because of process soft limit.
+
+    for i in {1..1300}; do less & doneo
+    [995] 11089
+    [996] 11090
+    -bash: fork: retry: Resource temporarily unavailable
+    -bash: fork: retry: Resource temporarily unavailable
+
