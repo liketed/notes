@@ -1,0 +1,5 @@
+How to install windows iso to ntfs partitioned drive?
+Format drive to ntfs in gparted, Mount it to whereever, run unetbootin with options prefilled in on command line.
+
+    [root@localhost isos]# unetbootin method=diskimage isofile=/home/user/windows7.iso installtype=USB targetdrive=/dev/sdb1
+
