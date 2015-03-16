@@ -3,6 +3,11 @@ Not really ulimit issue, show threads per user:
     for USER in `ps -ef | egrep -v '^UID' | awk '{ print $1 }' | sort -u`; do echo -n "$USER: "; ps -u $USER -L | wc -l; done | sort -rn -k2 
 
 
+Count open file handles per process:
+
+    for x in `ps -eF| awk '{ print $2 }'`;do echo `ls /proc/$x/fd 2> /dev/null | wc -l` $x `cat /proc/$x/cmdline 2> /dev/null`;done | sort -n -r | head -n 20
+
+
 Whats my SOFT ulimit allowed for ALL values?
 
      ulimit -Sa
