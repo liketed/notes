@@ -17,3 +17,12 @@ Update unknown password to knowm
 Get system info
 
     racadm getsysinfo 
+
+
+Power up down cycle etc hardware
+
+    racadm powerdown
+    racadm powerup
+    racadm powercycle 
+    racadm powerstatus
+    racadm hardreset
