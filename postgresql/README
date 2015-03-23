@@ -1,2 +1,16 @@
+Random notes about postgres, probably will not make much sense to other people.
+
+
     ALTER ROLE davide WITH PASSWORD 'hu8jmn3';
     SELECT usename, passwd FROM pg_shadow;
+
+
+    SELECT pg_encoding_to_char(encoding) FROM pg_database WHERE datname = 'bacula';
+    SHOW CLIENT_ENCODING;
+    SHOW SERVER_ENCODING;
+
+
+List databases and their encodings: 
+
+    su postgres -c "psql -l -U postgres"
+
