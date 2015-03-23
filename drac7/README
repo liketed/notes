@@ -8,3 +8,12 @@ update drac
 
     racadm fwupdate -g -u -a 10.10.10.10 -d firmimg.d7
 
+
+Update unknown password to knowm
+
+    racadm config -g cfgUserAdmin -o cfgUserAdminPassword -i 2 newpassword
+
+
+Get system info
+
+    racadm getsysinfo 
