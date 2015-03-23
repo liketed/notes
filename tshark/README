@@ -1,0 +1,1 @@
+/usr/bin/tshark -n -i eth1 -R 'dns.qry.name contains "memcached"'
