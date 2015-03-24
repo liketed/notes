@@ -1,0 +1,28 @@
+Fucking racoon.
+
+
+
+Etype mismatch: got 2, expected 4
+DEBUG: resend phase1 packet c30470af63b8abe4:000000000000000
+DEBUG2: CHKPH1THERE: no established ph1 handler found
+DEBUG: malformed cookie received or the spi expired.
+
+
+These fucking messages, were because of special characters in the PSK.
+E.G. bad PSK : uionerinuer?weroug!ewovinwer
+Changed the PSK connection established immediately.
+
+
+[2.1.5-RELEASE][admin@pfSense.localdomain]/root(51): racoon -V
+@(#)ipsec-tools 0.8.1 (http://ipsec-tools.sourceforge.net)
+
+Compiled with:
+- OpenSSL 1.0.1i 6 Aug 2014 (http://www.openssl.org/)
+- IPv6 support
+- Dead Peer Detection
+- IKE fragmentation
+- Hybrid authentication
+- NAT Traversal
+- Admin port
+- Monotonic clock
+
