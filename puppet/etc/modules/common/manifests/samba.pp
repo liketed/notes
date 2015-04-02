@@ -23,11 +23,13 @@ class common::samba {
   }
   service {'smb':
     ensure  => running,
+    enable  => true,
     require => File['/etc/samba/smb.conf'],
     
   }
   service {'nmb':
     ensure  => running,
+    enable  => true,
     require => Service['smb'],
   }
   # Print remaining commands to console as I dont
