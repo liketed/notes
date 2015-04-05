@@ -7,6 +7,7 @@ class common::packages {
   package { $removePackages:, ensure => 'absent' }
 
   $defaultPackages = [
+    'bind-utils',
     'curl',
     'epel-release',
     'gcc',
