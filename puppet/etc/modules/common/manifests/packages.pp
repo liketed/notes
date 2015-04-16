@@ -8,6 +8,7 @@ class common::packages {
 
   $defaultPackages = [
     'bind-utils',
+    'cifs-utils',
     'curl',
     'epel-release',
     'gcc',
@@ -16,6 +17,7 @@ class common::packages {
     'mlocate',
     'rsync',
     'tmux',
+    'telnet',
     'strace',
     'vim-minimal',
     'vim-enhanced',
