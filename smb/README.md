@@ -43,3 +43,22 @@ My working smb.conf, I changed "security = share" to "security = user"
     security = user
     map to guest = Never
     
+
+Sometimes on windows, security authentication protocol has not been specified, I suppose it depends on which version of windows, or which domain/group policies have been applied on your system, I think this fixed smb mounting problems for me, but I dont want to roll back the change because it took so long so get it working I do not want to change it!
+
+http://lifeonubuntu.com/windows-7-cant-connect-to-default-administrative-share/
+
+The Fix: Tweak the Local Security Policy
+
+I finally found the answer. You need to properly set the Local Security Policy, which annoying comes with no default value set. Here’s how:
+Windows 7 Can't Connect to Shared Network Drives.
+
+By default, Windows 7 can't connect to network shares. Fix this with a Local Security Policy Change. (Click image to enlarge.)
+    Click on the start button
+    type secpol.msc to run the Local Security Policy manager
+    In the left pane, navigate your way to Local Policies –> Security Options and click on Security Options.
+    In the right pane, find “Network security: LAN Manager authentication level” and double-click it.
+    In the drop down box, choose “Send LM & NTLM – use NTLMv2 session if negotiated”
+    Click apply.
+
+    BINGO! You should now be all set to connect to the default administrative share on your network drives.
