@@ -10,7 +10,6 @@ class common::packages {
     'bind-utils',
     'cifs-utils',
     'curl',
-    'epel-release',
     'gcc',
     'lsof',
     'make',
@@ -25,5 +24,11 @@ class common::packages {
     'wget',
     'yum-utils',
     ]
-    package { $defaultPackages:, ensure => 'present' }
+  package { $defaultPackages:, ensure => 'present' }
+
+  if $::operatingsystem == 'CentOS'{
+    package { 'epel-release':,
+      ensure => installed,
+    }
+  }
 }
