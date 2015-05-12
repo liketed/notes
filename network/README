@@ -8,3 +8,12 @@ show which route matches for an IP address
 
     ip route show to match 8.8.8.8
 
+
+Remove bonding 
+
+    ifconfig bond0 down
+    echo "-eth0" > /sys/class/net/bond0/bonding/slaves
+    echo "-eth1" > /sys/class/net/bond0/bonding/slaves
+    echo "-bond0" > /sys/class/net/bonding_masters
+    # Maybe remove bonding, unless another interface is bonded, need to check more
+    #rmmod bonding 
