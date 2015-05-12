@@ -1,9 +1,15 @@
 # Configure repos on home machine
 class common::repo {
+  case $::operatingsystem {
+      'Fedora': { $atrpms='http://dl.atrpms.net/f$releasever-$basearch/atrpms/stable'
+                  $vbrpms='http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch' }
+      'CentOS': { $atrpms='http://dl.atrpms.net/el$releasever-$basearch/atrpms/stable'
+                  $vbrpms='http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch' }
+    }
   yumrepo{'atrpms':
     name     => 'atrpms',
     descr    => 'atrpms repo',
-    baseurl  => 'http://dl.atrpms.net/el$releasever-$basearch/atrpms/stable',
+    baseurl  => $atrpms,
     gpgkey   => 'http://ATrpms.net/RPM-GPG-KEY.atrpms',
     enabled  => true,
     gpgcheck => true,
@@ -11,7 +17,7 @@ class common::repo {
   yumrepo{'virtualbox':
     name     => 'virtualbox',
     descr    => 'virtualbox repo',
-    baseurl  => 'http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch',
+    baseurl  => $vbrpms,
     gpgkey   => 'https://www.virtualbox.org/download/oracle_vbox.asc',
     enabled  => true,
     gpgcheck => true,
