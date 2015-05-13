@@ -2,7 +2,6 @@
 :backend:
   - yaml
 :hierarchy:
-  - test
-
+  - "%{::hostname}"
 :yaml:
   :datadir: /opt/notes/puppet/etc/manifests/hiera/
