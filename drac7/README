@@ -21,8 +21,8 @@ Get system info
 
 Power up down cycle etc hardware
 
-    racadm powerdown
-    racadm powerup
-    racadm powercycle 
-    racadm powerstatus
-    racadm hardreset
+    racadm serveraction powerdown
+    racadm serveraction powerup
+    racadm serveraction powercycle 
+    racadm serveraction powerstatus
+    racadm serveraction hardreset
