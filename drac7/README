@@ -26,3 +26,11 @@ Power up down cycle etc hardware
     racadm serveraction powercycle 
     racadm serveraction powerstatus
     racadm serveraction hardreset
+
+
+Show disks in installed
+
+    racadm raid get pdisks
+    racadm raid get pdisks -o
+    racadm raid get vdisks
+    racadm raid get vdisks -o
