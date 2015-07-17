@@ -1,0 +1,1 @@
+In centos7, to make the power button poweroff instead of halt: edit /etc/systemd/logind.conf and uncomment HandlePowerKey and make sure its value is set to poweroff.

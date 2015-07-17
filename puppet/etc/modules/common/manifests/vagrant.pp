@@ -33,7 +33,7 @@ class common::vagrant {
   }
   exec{'vagrant_install':
     unless  => '/usr/bin/rpm -q vagrant',
-    command => 'rpm -Uvh https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.rpm',
+    command => 'rpm -Uvh https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.3_x86_64.rpm',
     require => Service ['vboxdrv'],
   }
 }
