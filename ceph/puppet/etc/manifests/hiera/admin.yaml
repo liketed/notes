@@ -1,0 +1,10 @@
+---
+classes                           :
+                                    - ceph::repo
+                                    - ceph::deploy
+                                    - ceph::user
+                                    - ceph::common
+
+leciao_host_roles                 :
+                                    - dont_dnsmasq
+
