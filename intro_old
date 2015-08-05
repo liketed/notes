@@ -1,0 +1,66 @@
+What is puppet? 
+  Provisioning and configuration of machines. 
+  Makes machine configurations reproducable, trackable. Machines ideally are completely configurated by puppet, except database uploads and replication.
+  Changes are committed to repository, allows rollback, identifies who made the changes, people can re-use the code others spent time on, people can learn and watch from other people's changes.
+
+What is hiera?
+  Used to separate private data from puppet.
+  public data e.g. password='example' goes into puppet
+  private data e.g. password='wree3nr5342111' goes into hiera.
+  Allows overrides per environment, public/example data for local or testlab usage.
+  There is an mini-example hiera setup in puppet repo, and there is a production / tng hierarchy in a seperate repo named hiera. A little confusing at the beginning, maybe.
+
+
+What is Virtuallbox? 
+  Simply, it is virtualisation software. Mostly known for it's GUI, does have a command line interface 'VBoxManage', but the commands are tedious.
+  Clicking is also tedious when done enough times, Clicking is error prone. In general we want to remove things that are error prone, and time consuming. Manual VM creation may take 5 mins. 
+
+What is Vagrant?
+  Command line interface to control, configure and manage Virtualbox, and much more 'providers' ... VMware, openstack, AWS, libvirt, qemu,
+  There is a text file, which vagrant uses to define a virtual machine with the specifications we want, it's called "Vagrantfile"
+  Vagrant creates vm in 20-30 seconds instead of 5 minutes, and exactly the same way each time.
+  Changes are in text format, memory size, disk size, forwarded ports, shared directories from host to vm. Changes are comittable.
+
+Requirements for Vagrant
+  OSX, Linux, Windows ( Pre warning, watch out for line feed issues for git checkouts in Windows )
+  Virtualbox installed.
+  Vagrant installed.
+  Ciao/Leguide puppet repo checkout.
+
+
+Demonstration time:
+
+How to interact Puppet, hiera, vagrant, Virtualbox? 
+  vagrant status             # show any existing virtual machines owned by vagrant
+  vagrant up centos7         # create virtual machine from Vagrantfile with name centos7
+  vagrant provision centos7  # run provisioning software (puppet) on vm. Provisioning command is specified in Vagrant file and hiera
+  vagrant ssh centos7        # ssh into the vm, can be helpful for troubleshooting.
+  vagrant destroy centos7    # kill the vm. 
+
+Change/Create puppet manifests
+  Make changes to manifest
+  Apply the new manifest using hiera to virtual machine
+  vagrant up 
+  make changes
+  vagrant provision to test
+  continue changes/provisionings to manifest and vm until all is green.
+  vagrant destroy vm, vagrant up vm, until everything runs smoothly, without error.
+  commit
+
+
+Mcollective
+  MCollective is a framework to build server orchestration or parallel job execution systems. Primarily we’ll use it as a means of programmatic execution of Systems Administration actions on clusters of servers. 
+  http://wiki.corp.leguide.com/display/ENG/Using+MCollective
+
+
+
+
+Monitoring:
+http://wiki/display/SYS/Monitoring+and+trending
+
+ZXTM:
+https://lb1.be.p1.ciao:9090/apps/zxtm/login.cgi
+
+Ovirt:
+http://repo.be.p1.ciao/ovirt-engine/
+http://repo.be.tng.ciao/ovirt-engine/
