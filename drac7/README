@@ -34,3 +34,15 @@ Show disks in installed
     racadm raid get pdisks -o
     racadm raid get vdisks
     racadm raid get vdisks -o
+
+
+Create virtual disk raid 0:
+
+    racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1
+    racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1
+    racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1
+    racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1
+    racadm jobqueue create RAID.Integrated.1-1
+    racadm serveraction powercycle
+    racadm jobqueue view -i JID_388057748551
+    racadm serveraction powercycle
