@@ -1,0 +1,14 @@
+Ssh into ILO and change boot order
+
+</>hpiLO-> set /system1/bootconfig1/bootsource3 bootorder=2
+status=0
+status_tag=COMMAND COMPLETED
+
+bootsource5=BootFmNetwork   bootorder=1
+bootsource3=BootFmDisk      bootorder=2
+bootsource1=BootFmCd        bootorder=3
+bootsource2=BootFmFloppy    bootorder=4
+bootsource4=BootFmUSBKey    bootorder=5
+
+
+</>hpiLO-> set /system1/bootconfig1/bootsource5 bootorder=1
