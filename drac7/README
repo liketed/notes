@@ -36,6 +36,14 @@ Show disks in installed
     racadm raid get vdisks -o
 
 
+Delete virtual disk raid0:
+
+    racadm raid deletevd:Disk.Virtual.0:RAID.Integrated.1-1
+    racadm jobqueue create RAID.Integrated.1-1
+    racadm serveraction powercycle
+    racadm jobqueue view -i JID_388057748551
+
+
 Create virtual disk raid 0:
 
     racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1
