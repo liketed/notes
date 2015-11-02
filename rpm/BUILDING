@@ -1,0 +1,4 @@
+# parse file and retreive remote sources
+spectool -g foo.spec
+
+spectool -g php55u-pecl-libredis.spec --directory $HOME/gitlab/pkg/trunk/pkg/centos6/dst/php55u-pecl-libredis/
