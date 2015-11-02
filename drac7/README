@@ -44,7 +44,7 @@ Delete virtual disk raid0:
     racadm jobqueue view -i JID_388057748551
 
 
-Create virtual disk raid 0:
+Create 8 separate virtual disk raid 0:   ( i.e. no raid, for use in servers like ceph, hadoop, moosefs. )
 
     racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1
     racadm raid createvd:RAID.Integrated.1-1 -rl r0 -pdkey:Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1
@@ -58,3 +58,11 @@ Create virtual disk raid 0:
     racadm serveraction powercycle
     racadm jobqueue view -i JID_388057748551
     racadm serveraction powercycle
+
+
+
+racadm raid createvd:RAID.Integrated.1-1 -rl r10 -wp wb -rp ra -pdkey:Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.6:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.7:Enclosure.Internal.0-1:RAID.Integrated.1-1
+
+
+racadm raid createvd:RAID.Integrated.1-1 -rl r10 -wp wb -rp ra -pdkey:Disk.Bay.0:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.1:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.2:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.3:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.4:Enclosure.Internal.0-1:RAID.Integrated.1-1,Disk.Bay.5:Enclosure.Internal.0-1:RAID.Integrated.1-1
+
