@@ -1,0 +1,69 @@
+ovirt shell connect
+    virt-shell -I -D -u admin@internal -l https://127.0.0.1/ovirt-engine/api
+    Password: 
+
+List clusters:
+    list clusters
+
+Get cluster details 
+    show cluster backend
+
+List vms:
+    list vms
+
+List vms on specific host:
+    list vms --query 'host=leob218'
+
+Get vm details:
+    show vm v006
+
+Start vm:
+    action vm v006 start
+
+Move vm to different cluster:
+    action vm v023 migrate --cluster-id 44b637b9-cc04-4d5b-9c08-14f30ddcc32c
+
+List disks:
+    list disks
+
+Get disk details:
+    show disk ov58_Disk1
+
+List storagedomains:
+    list storagedomains
+
+List disk in a storage domain only
+    list disks --storagedomain-identifier 67b20825-bc97-4382-a0cb-c25d752c5d93
+
+Move disk from storage to storage
+    action disk v082_Disk1 move --storage_domain-name leob214
+
+
+Change boot order
+    update vm v036 --os-boot 'boot.dev=network,boot.dev=hd'
+
+List snapshots from vm
+    list snapshots --vm-identifier fv001 --show-all
+
+
+
+
+
+postgres stuff
+
+
+engine=# select  disk_alias,image_group_id  from images_storage_domain_view  where storage_name='leob201';
+
+
+
+Snapshot in locked state, as in, locked from 2 years ago, with several ovirt and TNG reboots since, obviosuly snapshot is either done or broken. Our intention is to delete it anyways.
+
+engine=# select snapshot_id,description,status from snapshots where status = 'LOCKED' and vm_id in (select vm_guid from vm_static where vm_name='alpha2');
+             snapshot_id              | description | status 
+--------------------------------------+-------------+--------
+ 58a1c3e6-82e1-490a-a11e-10d595aee225 | clone       | LOCKED
+(1 row)
+
+engine=# update snapshots set status = 'OK' where snapshot_id = '58a1c3e6-82e1-490a-a11e-10d595aee225';
+UPDATE 1
+
