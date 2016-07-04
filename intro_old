@@ -50,17 +50,3 @@ Change/Create puppet manifests
 
 Mcollective
   MCollective is a framework to build server orchestration or parallel job execution systems. Primarily we’ll use it as a means of programmatic execution of Systems Administration actions on clusters of servers. 
-  http://wiki.corp.leguide.com/display/ENG/Using+MCollective
-
-
-
-
-Monitoring:
-http://wiki/display/SYS/Monitoring+and+trending
-
-ZXTM:
-https://lb1.be.p1.ciao:9090/apps/zxtm/login.cgi
-
-Ovirt:
-http://repo.be.p1.ciao/ovirt-engine/
-http://repo.be.tng.ciao/ovirt-engine/
