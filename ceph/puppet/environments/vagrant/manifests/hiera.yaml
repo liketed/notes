@@ -5,4 +5,4 @@
   - "%{::hostname}"
   - _environment
 :yaml:
-  :datadir: /vagrant/etc/manifests/hiera/
+  :datadir: /vagrant/environments/vagrant/manifests/hiera/

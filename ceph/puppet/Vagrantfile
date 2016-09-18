@@ -4,29 +4,29 @@
 mons = [
     {
         :name => "mon1",
-        :eth1 => "192.168.2.101",
+        :eth1 => "192.168.10.101",
     },
     {
         :name => "mon2",
-        :eth1 => "192.168.2.102",
+        :eth1 => "192.168.10.102",
     },
     {
         :name => "mon3",
-        :eth1 => "192.168.2.103",
+        :eth1 => "192.168.10.103",
     }
 ]
 osds = [
     {
         :name => "osd1",
-        :eth1 => "192.168.2.111",
+        :eth1 => "192.168.10.111",
     },
     {
         :name => "osd2",
-        :eth1 => "192.168.2.112",
+        :eth1 => "192.168.10.112",
     },
     {
         :name => "osd3",
-        :eth1 => "192.168.2.113",
+        :eth1 => "192.168.10.113",
     }
 ]
 
@@ -37,19 +37,19 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provider "virtualbox" do |v|
     v.memory = 1024
   end
-  config.vm.box = "http://leob223.be.tng.ciao/vagrant/centos71.box"
-
-
+  config.vm.box = "CentOS-7"
+  config.vm.box_url = 'http://cloud.centos.org/centos/7/vagrant/x86_64/images/CentOS-7-x86_64-Vagrant-1608_01.VirtualBox.box'
+  config.ssh.insert_key = false
+  config.puppet_install.puppet_version = :latest
 
   config.vm.define "admin", primary: true do |admin|
     admin.vm.hostname = "admin"
-    admin.vm.network "private_network", bridge: 'eth1', ip: '192.168.2.100', :netmask => '255.255.255.0'
+    admin.vm.network "private_network", bridge: 'en0', ip: '192.168.10.100', :netmask => '255.255.255.0'
 
     admin.vm.provision :puppet do |puppet|
-      puppet.manifests_path = "etc/manifests"
-      puppet.module_path    = "etc/modules"
-      puppet.manifest_file  = "test.pp"
-      puppet.options        = "--debug --hiera_config=/vagrant/etc/manifests/hiera.yaml"
+      puppet.environment_path = "environments"
+      puppet.environment = "vagrant"
+      puppet.options        = "--debug --hiera_config=/vagrant/environments/vagrant/manifests/hiera.yaml"
       puppet.facter         = { "vagrant" => "1" }
     end
   end
@@ -59,10 +59,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.hostname = opts[:name]
       config.vm.network "private_network", bridge: 'eth1', ip: opts[:eth1], :netmask => '255.255.255.0'
       config.vm.provision :puppet do |puppet|
-        puppet.manifests_path = "etc/manifests"
-        puppet.module_path    = "etc/modules"
-        puppet.manifest_file  = "test.pp"
-        puppet.options        = "--debug --hiera_config=/vagrant/etc/manifests/hiera.yaml"
+        puppet.environment_path = "environments"
+        puppet.environment = "vagrant"
+        puppet.options        = "--debug --hiera_config=/vagrant/environments/vagrant/manifests/hiera.yaml"
         puppet.facter         = { "vagrant" => "1" }
       end
     end
@@ -81,10 +80,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       config.vm.hostname = opts[:name]
       config.vm.network "private_network", bridge: 'eth1', ip: opts[:eth1], :netmask => '255.255.255.0'
       config.vm.provision :puppet do |puppet|
-        puppet.manifests_path = "etc/manifests"
-        puppet.module_path    = "etc/modules"
-        puppet.manifest_file  = "test.pp"
-        puppet.options        = "--debug --hiera_config=/vagrant/etc/manifests/hiera.yaml"
+        puppet.environment_path = "environments"
+        puppet.environment = "vagrant"
+        puppet.options        = "--debug --hiera_config=/vagrant/environments/vagrant/manifests/hiera.yaml"
         puppet.facter         = { "vagrant" => "1" }
       end
     end
