@@ -13,7 +13,7 @@ class ceph::user{
     home     => '/home/ceph',
     shell    => '/bin/bash',
     groups   => ['wheel'],
-    require  => Group ['ceph'],
+    require  => Group['ceph'],
   }
   file { '/home/ceph':
     ensure  => directory,
