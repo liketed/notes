@@ -1,0 +1,53 @@
+It's amazing how many people have no alignment on how to run a system. This set of rules is kind of being outdated in todays world of serverless and container environments, how-ever the same thinking should be applied to future technologies.
+This list is not final, and not perfect, but just an example of guidelines of how to keep colleagues on the same track, same understanding. 
+Example means these are not final, this is to be considered a moving doc that bends and moves with the evolution of a datacenter. 
+
+Nothing moves into the datacenter unless it follows all of these rules. If we change the rules it must be a change the brings all pre-existing machines running according to the old ruleset up to the state of the new ruleset.
+
+Ansible:
+There is only 1 ansible repo, for everything. A second repository is possible but only for separating credentials.
+Write access to ansible repo requires completion of basic python programming module at one of these sites: codecademy.com, coderdojo, codewars.
+Each ansible role must have sane defaults that work in a vagrant environment. If you someone wants to look at your playbook / role, `svn up; vagrant up role` is all that is needed. Sane defaults are then easily wrapper-roled, or group_vars/environment over written. In the end we have a huge Vagrantfile with 20 or 50 different machine names in it, each one a functioning machine. We can also for example have Vagrantfile that includes sub files for machine definitions.
+Machine must be fully configured on a single ansible run, second ansible run must have no "changed" output, unless something changed in ansible config.
+Colorized output is important. We have vagrant running bash running ansible. All 3 must use correct colorised output. Red = broken in ansible, puppet and chef. Keep it this way, red is not to be ignored. Developers seeing red output report a real problem.
+No code like: "ignore_errors: yes" to get rid of red.
+Ansible runs via cronjob everywhere once per hour, or every 2 hours.
+If you think its too risky to deploy configuration changes to databases and to automatically restart them, then do not restart them, but do deploy the config change leaving a backup file of the previous. Create a nagios alert to notify that the config file is newer than the process start time of the db server process. This notifies you that the config change is pending.
+Commits, or branch merges must happen within 24 hours of the original commit. To get the code to production must happen fast.
+No ansible commits, just like releases, before 3pm Friday, or 5pm on normal days.
+Ansible must automatically enter the machine into nagios, or another other tool. Icinga2, Zabbix. http://docs.ansible.com/ansible/list_of_monitoring_modules.html 
+All ansible runs should work on the target server with a universal command `ansible run` or `wrapper_script_ansible_run` We should never be thinking "How exactly do I run ansible here?" This speeds up understanding a machine's function also.
+No spaces, no dashes, in filenames. Variables are named in {{ project }}_{{ function }}_{{ variable }} format. So iris_frontend_variable
+Group vars should not be abused for variables not needed everywhere. App, group and host specific vars should be broken down so.
+All ansible code must be linted https://github.com/willthames/ansible-lint
+
+Redhat:
+All systems must come from the same ami. It is possible to create a new ami that is based on the old, with updates etc "burned in"
+All systems must have the same filesystem layout and disk sizes.
+Non-OS data, mysql, postgresql, go data, etc, must be on an external disk. The external disk must be mounted in /dataN/project, e.g. /data1/mysql, /data1/cassandra etc. vagrant-persistent-storage to create and attach external disks. 
+All systems only allow access with id_rsa keys with minimum 2048 bit key strength. ( this is an amazon default for their ami's ). Each human user gets their own UID in a user's UID range. E.g. 1000-2000. Each application gets it's own UID in a range 2000-3000. UIDs are essentially documented in a users ansible file.
+Uids below 1000 are reserved for OS applications and upstream packages. https://access.redhat.com/solutions/420023  They may be overridden for consistency. I mean, if an application install mysql uses next available uid, then redis install gets next uid, then there maybe some issues programming playbooks for hundreds of machines. In this case, install the user with a wrapper playbook with a custom uid. Then the installer package will skip user creation.
+All files either belong to rpm, or ansible. There is no other way a file can get to a system and be needed by the system.
+/var is essentially for logging. No project data in here. If /var with logs fills it may destroy hard to repair data like databases and so on.
+/home is for user's data. No project related data here. In emergency like / filling, user's home dirs may be purged in order to free space. 
+Ideally /, /boot, /var, /home, /usr, /etc, /tmp are separate partitions. Yes that is a lot of partitions. But troubleshooting is a lot easier when they are separate. Troubleshooting disk space increasing in an emergency when all data lies on / (root) is too late. 
+Each application deployed must have simple on/off working/not working checks in nagios. Ideally there is a process check `ps aux|grep project`, AND a second, like `mysql projectDB -e "select from users where uid=1", or wget and expect a 200 response.
+Each application deployed must have associated graphing. MySQL? SELECT, UPDATE, DELETE, REPLICATION LAG, etc must be graphed. Disk I/O must be graphed. Not just in percentage, because AWS allows percentage to be changed by increasing machine sizes, Graphs must be based on IOPS.
+No symlinks, no hardlinks, ever. 
+Organised file locations as follows means its very easy find what we want when we want it:
+All cronjobs must be located in /etc/cron.d/app_name. No cronjobs to be put into /var/spool, or the opposite. When looking for a cronjob we should only look in 1 agreed location, not multiple.
+All sudoers modifications must be put into /etc/sudoers.d/app_name. The /etc/sudoers file should never be directly modified,  
+All rsyslog modifications must be put into /etc/rsyslog.d/app_name.
+All logrotate modifications must be put into /etc/logrotate.d/app_name.
+
+AWS:
+All projects live in a separate VPC.  {{ project }}_{{ environment }}  e.g. IRIS_QA which finely controls access.
+Junior devops = Dev environment access. AWS solutions architect associate (1st AWS exam from amazon) = QA access. AWS solutions architect professional = Prod access. This allows people to learn in suitable environments and prove themselves.
+All resources must be created and be reproducible with code. E.g. https://aws.amazon.com/cloudformation/  or  https://www.terraform.io/docs/providers/aws/  Terraform works also on non-aws infrastructure.
+All projects must have delegated subdomain E.g. *.ship.platts.com. This subdomain is controlled and configured by ansible running in that cluster. Each host generates it's own dns records for it'self. 
+No A records are to be used in a connection string for an application. Everything must be a CNAME. proxy1.ship.platts.com. proxy2.ship.platts.com
+Backup solution needs an off-site location. And restores must be well documented.
+
+Deployment:
+A deployment is not considered finished, until you turn off the deployment, and nagios goes red, and then turn it back on, and nagios goes green.
+
