@@ -1,7 +1,9 @@
 List and delete disks from virtualbox:
 
-    [sk@leo puppet]$ VBoxManage list hdds 
-    [sk@leo puppet]$ vboxmanage closemedium disk 9d0ced21-c2b2-4be8-8517-2ae369595e4d --delete
+    $ VBoxManage list hdds 
+    $ vboxmanage closemedium disk 9d0ced21-c2b2-4be8-8517-2ae369595e4d --delete
 
 
+Supress all warnings:
 
+    $ VBoxManage setextradata global GUI/SuppressMessages "all"
