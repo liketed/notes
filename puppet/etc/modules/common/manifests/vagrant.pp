@@ -18,15 +18,15 @@ class common::vagrant {
     allow_virtual => false,
     require       => Exec['devtools'],
   }
-  package {'VirtualBox-5.0':
+  package {'VirtualBox-5.1':
     ensure  => present,
     require => Package['dkms'],
   }
   exec { 'vboxdrv_setup':
     command     => '/usr/lib/virtualbox/vboxdrv.sh setup',
     refreshonly => true,
-    subscribe   => Package['VirtualBox-5.0'],
-    require     => Package['VirtualBox-5.0'],
+    subscribe   => Package['VirtualBox-5.1'],
+    require     => Package['VirtualBox-5.1'],
   }
   service {'vboxdrv':
     ensure  => running,
@@ -34,7 +34,7 @@ class common::vagrant {
   }
   exec{'vagrant_install':
     unless  => '/usr/bin/rpm -q vagrant',
-    command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/1.8.4/vagrant_1.8.4_x86_64.rpm',
+    command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/1.8.6/vagrant_1.8.6_x86_64.rpm',
     require => Service['vboxdrv'],
   }
 }
