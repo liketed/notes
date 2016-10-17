@@ -7,3 +7,5 @@ To set amount of spaces in a tab, set tabstop
 To replace existing tabs, use retab
     :retab
 
+To change color highlighting in vimdiff
+    :highlight! link DiffText Todo
