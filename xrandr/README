@@ -1,0 +1,13 @@
+Display connected screens, find name of primary display:
+
+    xrandr |grep 'connected primary'
+    eDP-1 connected primary 2560x1440+0+0 (normal left inverted right x axis y axis) 310mm x 170mm
+
+
+Force new mode thats not listed as supported. 
+
+    xrandr --newmode "1920x1080"  173.00  1920 2048 2248 2576  1080 1083 1088 1120 -hsync +vsync
+    xrandr --addmode eDP-1 1920x1080
+    xrandr --output eDP-1 --mode 1920x1080
+    xrandr |grep connected
+    eDP-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 310mm x 170mm
