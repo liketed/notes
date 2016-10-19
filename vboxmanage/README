@@ -7,3 +7,9 @@ List and delete disks from virtualbox:
 Supress all warnings:
 
     $ VBoxManage setextradata global GUI/SuppressMessages "all"
+
+
+Mmmm some hackery. I dont have a vmware license, so with packer I create a vm for virtualbox that I later use in vpshere. Packer mostly pre-installs some vmware tools before the machine first boots. In the box file created, there are vmdk files, but they are not really vmdk format. I have to convert them with this command to work in vsphere:
+
+    $ VBoxManage clonehd packer-virtualbox-iso-1476877513-disk1.vmdk CentOS-7.2-vmware-disk1.vmdk --format VMDK
+    $ VBoxManage clonehd packer-virtualbox-iso-1476877513-disk2.vmdk CentOS-7.2-vmware-disk2.vmdk --format VMDK
