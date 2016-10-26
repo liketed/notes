@@ -1,0 +1,21 @@
+https://docs.oracle.com/cd/E24628_01/em.121/e27046/appdx_pxeboot.htm#EMLCM12198
+
+By default, the boot image searches the pxelinux.cfg directory on TFTP server for boot configuration files on the TFTP server using the following approach:
+
+First, it searches for the boot configuration file that is named according to the MAC address represented in lower case hexadecimal digits with dash separators. For example, for the MAC Address "88:99:AA:BB:CC:DD", it searches for the file 01-88-99-aa-bb-cc-dd.
+
+Then, it searches for the configuration file using the IP address (of the machine that is being booted) in upper case hexadecimal digits. For example, for the IP Address "192.0.2.91", it searches for the file "C000025B".
+
+If that file is not found, it removes one hexadecimal digit from the end and tries again. However, if the search is still not successful, it finally looks for a file named "default" (in lower case).
+
+For example, if the boot file name is /tftpboot/pxelinux.0, the Ethernet MAC address is 88:99:AA:BB:CC:DD, and the IP address 192.0.2.91, the boot image looks for file names in the following order:
+
+/tftpboot/pxelinux.cfg/01-88-99-aa-bb-cc-dd
+/tftpboot/pxelinux.cfg/C000025B
+/tftpboot/pxelinux.cfg/C000025
+/tftpboot/pxelinux.cfg/C00002
+/tftpboot/pxelinux.cfg/C0000
+/tftpboot/pxelinux.cfg/C000
+/tftpboot/pxelinux.cfg/C00
+/tftpboot/pxelinux.cfg/C0
+/tftpboot/pxelinux.cfg/C
