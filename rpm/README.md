@@ -43,6 +43,6 @@ Owner of file
     centos-release-6-5.el6.centos.11.2.x86_64
 
 
-List the gpg key details, like owner
+List the gpg key details, like owner, print rpm name, and then a separate description.
 
-    rpm -qa gpg-pubkey --qf "%{version}-%{release} %{summary}\n"
+    rpm -qa gpg-pubkey --qf "%{name}-%{version}-%{release} %{summary}\n"
