@@ -46,3 +46,13 @@ Owner of file
 List the gpg key details, like owner, print rpm name, and then a separate description.
 
     rpm -qa gpg-pubkey --qf "%{name}-%{version}-%{release} %{summary}\n"
+
+
+List the gpg keys in a file
+
+    gpg --list-packets /etc/pki/rpm-gpg/RPM-GPG-KEY-Puppet-PC1 |grep keyid
+
+
+List the gpg keys that a package is signed with
+
+    rpm -qa --qf '%{NAME}-%{VERSION}-%{RELEASE} %{SIGPGP:pgpsig} %{SIGGPG:pgpsig}\n' -p puppet-agent-1.*
