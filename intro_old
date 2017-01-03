@@ -25,8 +25,7 @@ Requirements for Vagrant
   OSX, Linux, Windows ( Pre warning, watch out for line feed issues for git checkouts in Windows )
   Virtualbox installed.
   Vagrant installed.
-  Ciao/Leguide puppet repo checkout.
-
+  Puppet repo checkout.
 
 Demonstration time:
 
