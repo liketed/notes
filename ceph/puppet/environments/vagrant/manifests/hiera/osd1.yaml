@@ -2,7 +2,3 @@
 classes                           :
                                     - ceph::user
                                     - ceph::common
-
-leciao_host_roles                 :
-                                    - dont_dnsmasq
-
