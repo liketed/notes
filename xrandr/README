@@ -2,6 +2,7 @@ Display connected screens, find name of primary display:
 
     xrandr |grep 'connected primary'
     eDP-1 connected primary 2560x1440+0+0 (normal left inverted right x axis y axis) 310mm x 170mm
+    for p in /sys/class/drm/*/status; do con=${p%/status}; echo -n "${con#*/card?-}: "; cat $p; done
 
 
 Force new mode thats not listed as supported. 
@@ -11,3 +12,14 @@ Force new mode thats not listed as supported.
     xrandr --output eDP-1 --mode 1920x1080
     xrandr |grep connected
     eDP-1 connected primary 1920x1080+0+0 (normal left inverted right x axis y axis) 310mm x 170mm
+
+
+And again
+
+    cvt 1600 900
+    # 1600x900 59.95 Hz (CVT 1.44M9) hsync: 55.99 kHz; pclk: 118.25 MHz
+    Modeline "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+    xrandr --newmode "1600x900_60.00"  118.25  1600 1696 1856 2112  900 903 908 934 -hsync +vsync
+    xrandr --addmode eDP-1-1 1600x900_60.00
+    xrandr --output eDP-1-1 --mode 1600x900_60.00
+
