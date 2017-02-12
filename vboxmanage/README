@@ -4,6 +4,14 @@ List and delete disks from virtualbox:
     $ vboxmanage closemedium disk 9d0ced21-c2b2-4be8-8517-2ae369595e4d --delete
 
 
+List and delete vm:
+
+    $ vboxmanage list vms
+    $ vboxmanage list vms|awk -F\" {'print $2'}
+    $ vboxmanage unregistervm `vboxmanage list vms|awk -F\" {'print $2'}` -delete
+
+
+
 Supress all warnings:
 
     $ VBoxManage setextradata global GUI/SuppressMessages "all"
