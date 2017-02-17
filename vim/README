@@ -9,3 +9,9 @@ To replace existing tabs, use retab
 
 To change color highlighting in vimdiff
     :highlight! link DiffText Todo
+
+
+Visual mode text only replacement. Highlight the text you want, hit colon, remove everything back to colon, and type the replacement.
+This replaces double with single quotes in highlighted area. 
+    :%s/\%V"/'/g
+
