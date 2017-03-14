@@ -3,3 +3,4 @@ classes                           :
                                     - common
                                     - common::workstation
                                     - common::samba
+                                    - common::plex
