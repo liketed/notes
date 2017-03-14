@@ -1,11 +1,19 @@
 # Configure samba on home machine
 class common::samba {
+  # My normal mount points for hot swappable ext drives
+  $sambaDirs = [
+    '/data1',
+    '/data2',
+    '/data3',
+    '/data4'
+  ]
+  file { $sambaDirs: ensure => directory, owner => 0, group => 0, }
   $sambaPackages = [
     'samba',
     'samba-client',
     'samba-common',
     ]
-    package { $sambaPackages:, ensure => 'present',allow_virtual => false, }
+  package { $sambaPackages: ensure => 'present', allow_virtual => false, }
   group {'smbgrp':
     ensure  => present,
     name    => 'smbgrp',
