@@ -13,6 +13,6 @@ class common::workstation {
     require => Yumrepo['google-chrome'],
   }
   package { 'terminator':
-    ensure => '0.98-4.fc25',
+    ensure => 'installed',
   }
 }
