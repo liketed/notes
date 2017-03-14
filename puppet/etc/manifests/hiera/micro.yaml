@@ -2,3 +2,4 @@
 classes                           :
                                     - common
                                     - common::workstation
+                                    - common::samba
