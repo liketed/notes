@@ -5,3 +5,4 @@ classes                           :
                                     - common::samba
                                     - common::plex
                                     - common::deluge
+                                    - common::jenkin
