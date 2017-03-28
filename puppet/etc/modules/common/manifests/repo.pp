@@ -22,4 +22,12 @@ class common::repo {
     enabled  => true,
     gpgcheck => true,
   }
+  yumrepo{'ius':
+    name     => 'ius',
+    descr    => 'ius repo',
+    baseurl  => 'https://dl.iuscommunity.org/pub/ius/stable/CentOS/7/x86_64/',
+    gpgkey   => 'https://dl.iuscommunity.org/pub/ius/IUS-COMMUNITY-GPG-KEY',
+    enabled  => true,
+    gpgcheck => true,
+  }
 }
