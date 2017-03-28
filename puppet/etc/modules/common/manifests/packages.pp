@@ -11,6 +11,7 @@ class common::packages {
     'cifs-utils',
     'curl',
     'gcc',
+    'git2u',
     'lsof',
     'make',
     'mlocate',
