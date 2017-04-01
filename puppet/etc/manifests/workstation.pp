@@ -27,4 +27,5 @@ class {'pre_env':
   stage => first,
 }
 
-hiera_include('classes')
+include common
+include common::workstation
