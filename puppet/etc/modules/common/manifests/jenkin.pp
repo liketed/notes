@@ -26,9 +26,6 @@ class common::jenkin {
     provider => git,
     source   => 'https://github.com/liketed/packer.git',
   }
-#  jenkins::job { 'CentOS-6.8':
-#    config => template("${templates}/test-build-job.xml.erb"),
-#  }
-
-
+  common::packer { 'CentOS-6.9-puppet-virtualbox': }
+  common::packer { 'CentOS-7.3-puppet-virtualbox': }
 }
