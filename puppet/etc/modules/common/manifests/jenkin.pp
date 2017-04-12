@@ -1,6 +1,7 @@
 ## 
 class common::jenkin {
   class {'jenkins':
+    executors => 1,
   }
 
   jenkins::plugin { 'display-url-api': }
@@ -28,4 +29,5 @@ class common::jenkin {
   }
   common::packer { 'CentOS-6.9-puppet-virtualbox': }
   common::packer { 'CentOS-7.3-puppet-virtualbox': }
+  common::packer { 'CentOS-7.3-kernel4-puppet-virtualbox': }
 }
