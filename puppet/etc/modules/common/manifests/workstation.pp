@@ -15,4 +15,8 @@ class common::workstation {
   package { 'terminator':
     ensure => 'installed',
   }
+  # Along with https://extensions.gnome.org/extension/118/no-topleft-hot-corner/
+  package { 'gnome-shell-browser-plugin':
+    ensure => 'installed',
+  }
 }
