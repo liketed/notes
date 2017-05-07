@@ -1,7 +1,7 @@
 ## 
 class common::jenkin {
   class {'jenkins':
-    executors => 1,
+#    executors => 1,
   }
 
   jenkins::plugin { 'display-url-api': }
