@@ -12,6 +12,9 @@ class common::workstation {
     ensure => 'installed',
     require => Yumrepo['google-chrome'],
   }
+  package { 'gparted':
+    ensure => 'installed',
+  }
   package { 'terminator':
     ensure => 'installed',
   }
