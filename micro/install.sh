@@ -1,5 +1,5 @@
-rpm -q puppetlabs-release-pc1 || rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-rpm -q ius-release            || rpm -ivh https://centos7.iuscommunity.org/ius-release.rpm
+rpm -q puppetlabs-release-pc1 || yum install -y https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+rpm -q ius-release            || yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 yum update -y 
 rpm -q puppet-agent           || yum install -y puppet
 rpm -q rubygem-puppet-lint    || yum install -y rubygem-puppet-lint
