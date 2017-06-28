@@ -4,10 +4,10 @@ git fetch origin
 git reset --hard origin/master
 
 
-git config --global user.name "Redrocket"
+git config --global user.name "liketed"
 git config --global user.email "redrocketed@gmail.com"
 git config --global diff.noprefix true
 
 #[user]
 #        email = redrocketed@gmail.com
-#        name = Redrocket
+#        name = liketed

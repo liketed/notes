@@ -1,11 +1,6 @@
 ## Install vagrant
 class common::vagrant {
   Exec { path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/' ] }
-  exec { 'devtools':
-    unless  => '/usr/bin/yum grouplist "Development tools" | /bin/grep "^Installed Groups"',
-    command => '/usr/bin/yum -y groupinstall "Development tools"',
-    require => Yumrepo['virtualbox'],
-  }
   $kernelPackages = [
     'kernel-devel.x86_64',
     'kernel-headers',
@@ -15,7 +10,6 @@ class common::vagrant {
   package { $kernelPackages:,
     ensure        => 'present',
     allow_virtual => false,
-    require       => Exec['devtools'],
   }
   package {'VirtualBox-5.1':
     ensure  => present,
@@ -33,7 +27,13 @@ class common::vagrant {
   }
   exec{'vagrant_install':
     unless  => '/usr/bin/rpm -q vagrant',
-    command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/1.9.2/vagrant_1.9.2_x86_64.rpm',
+    command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/1.9.4/vagrant_1.9.4_x86_64.rpm',
+    require => Service['vboxdrv'],
+  }
+  exec{'packer_download':
+    command => 'wget https://releases.hashicorp.com/packer/1.0.0/packer_1.0.0_linux_amd64.zip; unzip packer_1.0.0_linux_amd64.zip; mv packer /usr/local/bin/',
+    cwd     => '/tmp',
+    creates => '/usr/local/bin/packer',
     require => Service['vboxdrv'],
   }
 }
