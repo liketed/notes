@@ -1,6 +1,6 @@
 ---
-classes                           :
-                                    - ceph::repo
-                                    - ceph::deploy
-                                    - ceph::user
-                                    - ceph::common
+classes:
+ - ceph::repo
+ - ceph::deploy
+ - ceph::user
+ - ceph::common
