@@ -6,4 +6,7 @@ class ceph::repo{
     group  => 'root',
     mode   => '0644',
   }
+  package {'ceph-release':
+    ensure   => 'absent',
+  }
 }

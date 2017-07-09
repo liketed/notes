@@ -1,8 +1,9 @@
 ---
-:backend:
-  - yaml
-:hierarchy:
-  - "%{::hostname}"
-  - _environment
-:yaml:
-  :datadir: /vagrant/environments/vagrant/manifests/hiera/
+version: 5
+defaults:
+  datadir: /vagrant/environments/vagrant/manifests/hiera/
+  data_hash: yaml_data
+
+hierarchy:
+  - name: Hostname
+    path: "%{::hostname}.yaml"

@@ -1,7 +1,8 @@
-[ceph-noarch]
-name=Ceph noarch packages
-baseurl=http://ceph.com/rpm-hammer/el7/noarch
+[Ceph]
+name=Ceph packages for $basearch
+baseurl=http://download.ceph.com/rpm-hammer/el7/$basearch
 enabled=1
 gpgcheck=1
 type=rpm-md
-gpgkey=https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/release.asc
+priority=1
+gpgkey=https://download.ceph.com/keys/release.asc
