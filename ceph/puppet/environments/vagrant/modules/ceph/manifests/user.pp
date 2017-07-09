@@ -55,5 +55,4 @@ class ceph::user{
     mode    => '0700',
     require  => File['/home/ceph'],
   }
-
 }

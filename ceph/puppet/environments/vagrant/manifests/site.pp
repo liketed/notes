@@ -1,5 +1,5 @@
 # Pull classes from hiera
-hiera_include("classes")
+lookup('classes', Array[String], 'unique').include
 Package {
   allow_virtual => false,
 }
