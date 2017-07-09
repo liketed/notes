@@ -1,5 +1,6 @@
 # Deploy chef user, ssh key, sudoers file
 class ceph::common{
+  $subnet = $facts['networking']['interfaces']['eth1']['network'][0,-3]
   package { 'yum-plugin-priorities':
     ensure => present,
   }
@@ -34,5 +35,14 @@ class ceph::common{
     ensure => directory,
     owner  => 'ceph',
     group  => 'ceph',
+  }
+  host { 'client':
+    ip => "${subnet}.200",
+  }
+  host { 'osd4':
+    ip => "${subnet}.114",
+  }
+  host { 'osd5':
+    ip => "${subnet}.115",
   }
 }
