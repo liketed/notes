@@ -8,4 +8,4 @@ hierarchy:
   - name: Hostname
     path: "%{::hostname}.yaml"
   - name: Hostname minus index is role (custom fact)
-    path: "%{::role}.yaml"
+    path: "role_%{::role}.yaml"
