@@ -1,12 +1,7 @@
 class ceph::repo{
-  file {'/etc/yum.repos.d/ceph_repo.repo':
-    ensure => file,
-    source => 'puppet:///modules/ceph/ceph.repo',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
-  }
   package {'ceph-release':
-    ensure   => 'absent',
+    ensure   => 'present',
+    provider => 'rpm',
+    source   => 'http://download.ceph.com/rpm-jewel/el7/noarch/ceph-release-1-1.el7.noarch.rpm',
   }
 }
