@@ -1,4 +1,0 @@
----
-classes:
- - ceph::user
- - ceph::common
