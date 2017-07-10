@@ -2,3 +2,4 @@
 classes:
  - ceph::user
  - ceph::common
+ - ceph::mon
