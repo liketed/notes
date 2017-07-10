@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName <%= @hostname %>
+
+    WSGIDaemonProcess cephdash user=apache group=apache processes=1 threads=5
+    WSGIScriptAlias / /var/www/html/ceph-dash/contrib/wsgi/cephdash.wsgi
+    WSGIPassAuthorization On
+
+    <Directory /opt/ceph-dash>
+        WSGIProcessGroup cephdash
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
+

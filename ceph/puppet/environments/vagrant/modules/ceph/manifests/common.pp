@@ -41,6 +41,12 @@ class ceph::common{
     owner  => 'ceph',
     group  => 'ceph',
   }
+  file {'/etc/ceph/ceph.client.admin.keyring':
+    ensure => present,
+    owner  => 'ceph',
+    group  => 'ceph',
+    mode   => '0644',
+  }
   host { 'client':
     ip => "${subnet}.200",
   }
