@@ -11,6 +11,14 @@ class ceph::common{
   package { 'ntp':
     ensure => present,
   }->
+  file {'/etc/ntp.conf':
+    ensure => file,
+    source => 'puppet:///modules/ceph/ntp.conf',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
+    notify => Service['ntpd'],
+  }->
   service { 'ntpd':
     ensure => running,
     enable => true,
