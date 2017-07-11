@@ -19,13 +19,22 @@
   netmask: 255.255.255.0
   adapter: eno1
   memory:  1024
+  vmdk:    osd1.vmdk
 - name:    osd2
   ipaddr:  192.168.2.112
   netmask: 255.255.255.0
   adapter: eno1
   memory:  1024
+  vmdk:    osd2.vmdk
 - name:    osd3
   ipaddr:  192.168.2.113
   netmask: 255.255.255.0
   adapter: eno1
   memory:  1024
+  vmdk:    osd3.vmdk
+- name:    osd4
+  ipaddr:  192.168.2.114
+  netmask: 255.255.255.0
+  adapter: eno1
+  memory:  1024
+  vmdk:    osd4.vmdk
