@@ -1,6 +1,23 @@
 # Deploy chef user, ssh key, sudoers file
 class ceph::common{
   $subnet = $facts['networking']['interfaces']['eth1']['network'][0,-3]
+  service { 'firewalld':
+    ensure => stopped,
+    enable => false,
+  }->
+  package { 'chrony':
+    ensure => absent,
+  }->
+  package { 'ntp':
+    ensure => present,
+  }->
+  service { 'ntpd':
+    ensure => running,
+    enable => true,
+  }->
+  exec {'ntpd-force':
+    command => '/usr/sbin/ntpq -p',
+  }->
   package { 'yum-plugin-priorities':
     ensure => present,
   }->
@@ -16,10 +33,6 @@ class ceph::common{
   exec {'import-epel-gpg':
     command     => '/usr/bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7',
     refreshonly => true,
-  }->
-  service { 'firewalld':
-    ensure => stopped,
-    enable => false,
   }->
   file {'/data':
     ensure => directory,
