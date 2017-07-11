@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.memory = 1024
   end
   config.vm.box = "CentOS-7.3-puppet-virtualbox"
-  config.vm.box_url = 'http://vagrant.kilduff.de/CentOS-7.3-puppet-virtualbox.json'
+  config.vm.box_url = 'http://images.kilduff.de/CentOS-7.3-puppet-virtualbox.box'
   config.ssh.insert_key = false
 
 
@@ -53,6 +53,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       puppet.options        = "--hiera_config=/vagrant/environments/vagrant/manifests/hiera.yaml"
       puppet.facter         = { "vagrant" => "1" }
     end
+    if server['name'].include? 'osd'
+#      puts "Attaching disk to " + server['name']
+      if server['vmdk'].include? 'vmdk'
+        config.vm.provider :virtualbox do |vb|
+          vb.customize [ 'storageattach', :id, '--storagectl', 'IDE Controller', '--port', 1, '--device', 1, '--type', 'hdd', '--medium', server['name'] + '.vmdk' ]
+        end
+      end # end if vmdk file
+    end # end if server name
   end
 end
 end
