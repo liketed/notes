@@ -29,19 +29,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.manage_guest = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = false
-  config.vm.provider "virtualbox" do |v|
-    v.memory = 1024
-  end
   config.vm.box = "CentOS-7.3-puppet-virtualbox"
   config.vm.box_url = 'http://images.kilduff.de/CentOS-7.3-puppet-virtualbox.box'
   config.ssh.insert_key = false
-
 
   servers.each do |server|
     config.vm.define server['name'] do |config|
       config.hostmanager.ip_resolver = proc do |vm, resolving_vm|
         server['ipaddr']
       end
+    config.vm.provider "virtualbox" do |v|
+      v.memory = server['memory']
+    end
     config.vm.hostname = server['name']
     config.vm.network :public_network, ip: server['ipaddr'],    :netmask => '255.255.255.0', bridge: server['adapter']
     config.vm.provision "shell",
