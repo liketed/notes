@@ -30,8 +30,11 @@ class common::vagrant {
     command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/1.9.6/vagrant_1.9.6_x86_64.rpm',
     require => Service['vboxdrv'],
   }
+  package {'unzip':
+    ensure  => present,
+  }->
   exec{'packer_download':
-    command => 'wget https://releases.hashicorp.com/packer/1.0.2/packer_1.0.2_linux_amd64.zip; unzip packer_1.0.2_linux_amd64.zip; mv packer /usr/local/bin/',
+    command => 'wget https://releases.hashicorp.com/packer/1.1.0/packer_1.1.0_linux_amd64.zip; unzip packer_1.1.0_linux_amd64.zip; mv packer /usr/local/bin/',
     cwd     => '/tmp',
     creates => '/usr/local/bin/packer',
     require => Service['vboxdrv'],
