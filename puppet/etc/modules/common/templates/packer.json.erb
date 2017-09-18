@@ -44,6 +44,7 @@
       <command>for vm in `vboxmanage list vms |awk -F\&quot; {&apos;print $2&apos;}`; do vboxmanage unregistervm $vm -delete; done
 for hdd in `VBoxManage list hdds|grep ^UUID|awk {&apos;print $NF&apos;}`; do VBoxManage closemedium disk $hdd --delete; done
 rm -rf /var/lib/jenkins/jobs/<%= @name %>/workspace/*vmdk
+rm -rf /var/lib/jenkins/jobs/<%= @name %>/workspace/output-virtualbox-iso
 PACKER_CACHE_DIR=/var/lib/jenkins/.packer_cache /usr/local/bin/packer build <%= @name %>.json</command>
     </hudson.tasks.Shell>
   </builders>

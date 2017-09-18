@@ -1,6 +1,4 @@
 ---
-:backend:
-  - yaml
 :hierarchy:
   - "%{::hostname}"
 :yaml:
