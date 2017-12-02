@@ -1,0 +1,3 @@
+connect to newest attached /dev/tty
+
+screen $(ls -tw 1 /dev/tty* | head -1) 115200
