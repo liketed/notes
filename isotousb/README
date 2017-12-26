@@ -1,0 +1,15 @@
+yum install -y geteltorito
+geteltorito -o bios.img n1cur18w.iso
+
+Booting catalog starts at sector: 20 
+Manufacturer of CD: NERO BURNING ROM
+Image architecture: x86
+Boot media type is: harddisk
+El Torito image starts at sector 27 and has 47104 sector(s) of 512 Bytes
+
+Image has been written to file "bios.img".
+
+dd if=bios.img of=/dev/sdp #Will Erase the drive SDP
+
+
+For me running linux, I have secure boot off, and legacy boot enabled. Trying to boot from the usb disk after burning it showed usb the lights flashing to indicate something was being read from the disk, but it wouldnd boot/run any software. To boot from this usb disk successfully I needed to enable secure boot, which automatically disabled legacy boot at the same time, only then would the software run from the usb drive. 
