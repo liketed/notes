@@ -27,6 +27,7 @@ class common::jenkin {
     source   => 'https://github.com/liketed/packer.git',
   }
   common::packer { 'CentOS-6.9-puppet-virtualbox': }
+  common::packer { 'CentOS-6-virtualbox': }
   common::packer { 'CentOS-7-puppet-virtualbox': }
   common::packer { 'CentOS-7-kernel4-puppet-virtualbox': }
   common::packer { 'Fedora-25-puppet-virtualbox': }
