@@ -11,15 +11,15 @@ class common::vagrant {
     ensure        => 'present',
     allow_virtual => false,
   }
-  package {'VirtualBox-5.1':
+  package {'VirtualBox-5.2':
     ensure  => present,
     require => Package['dkms'],
   }
   exec { 'vboxdrv_setup':
     command     => '/usr/lib/virtualbox/vboxdrv.sh setup',
     refreshonly => true,
-    subscribe   => Package['VirtualBox-5.1'],
-    require     => Package['VirtualBox-5.1'],
+    subscribe   => Package['VirtualBox-5.2'],
+    require     => Package['VirtualBox-5.2'],
   }
   service {'vboxdrv':
     ensure  => running,
@@ -27,14 +27,14 @@ class common::vagrant {
   }
   exec{'vagrant_install':
     unless  => '/usr/bin/rpm -q vagrant',
-    command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/1.9.6/vagrant_1.9.6_x86_64.rpm',
+    command => 'rpm -Uvh https://releases.hashicorp.com/vagrant/2.0.1/vagrant_2.0.1_x86_64.rpm',
     require => Service['vboxdrv'],
   }
   package {'unzip':
     ensure  => present,
   }->
   exec{'packer_download':
-    command => 'wget https://releases.hashicorp.com/packer/1.1.0/packer_1.1.0_linux_amd64.zip; unzip packer_1.1.0_linux_amd64.zip; mv packer /usr/local/bin/',
+    command => 'wget https://releases.hashicorp.com/packer/1.1.3/packer_1.1.3_linux_amd64.zip; unzip packer_1.1.3_linux_amd64.zip; mv packer /usr/local/bin/',
     cwd     => '/tmp',
     creates => '/usr/local/bin/packer',
     require => Service['vboxdrv'],
