@@ -1,0 +1,15 @@
+Host relayHost
+  HostName dracAddress
+  User root
+  ProxyJump proxyHost
+  LocalForward 22 192.168.1.3:22
+  LocalForward 23 192.168.1.3:23
+  LocalForward 80 192.168.1.3:80
+  LocalForward 443 192.168.1.3:443
+  LocalForward 623 192.168.1.3:623
+  LocalForward 3668 192.168.1.3:3668
+  LocalForward 3669 192.168.1.3:3669
+  LocalForward 3770 192.168.1.3:3770
+  LocalForward 3771 192.168.1.3:3771
+  LocalForward 5900 192.168.1.3:5900
+  LocalForward 5901 192.168.1.3:5901
