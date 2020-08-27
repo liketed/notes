@@ -1,7 +1,7 @@
 ---
 version: 5
 defaults:
-  datadir: /vagrant/environments/vagrant/manifests/hiera/
+  datadir: /vagrant/environments/vagrant/manifests/
   data_hash: yaml_data
 
 hierarchy:
