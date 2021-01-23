@@ -4,3 +4,11 @@ Change keystoke repeat rate, The changes aren't applied until you log out and ba
     defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
     defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
 
+
+
+Enable virtualbox
+Reboot into recovery mode (command+R on reboot), unlock, open terminal and paste:
+
+    spctl kext-consent add VB5E2TV963
+
+Reboot and open virtualbox again, enabling more security restrictions in Security and Privac
