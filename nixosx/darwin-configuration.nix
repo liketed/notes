@@ -6,7 +6,12 @@
   environment.systemPackages =
     [
       pkgs.ansible_2_10
+      pkgs.gnused
       pkgs.htop
+      pkgs.kubernetes-helm
+      pkgs.minikube
+      pkgs.telnet
+      pkgs.vagrant
       pkgs.vim
     ];
 
