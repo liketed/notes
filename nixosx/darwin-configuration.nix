@@ -5,12 +5,18 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
+      pkgs.ansible-lint
       pkgs.ansible_2_10
+      pkgs.cassandra
       pkgs.gnused
       pkgs.htop
+      pkgs.jq
       pkgs.kubernetes-helm
       pkgs.minikube
+      pkgs.python3
+      pkgs.python38Packages.pip
       pkgs.telnet
+      pkgs.tree
       pkgs.vagrant
       pkgs.vim
     ];
