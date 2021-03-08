@@ -5,7 +5,7 @@ Install nix on macos big sur
     ./result/bin/darwin-installer
     . /etc/static/bashrc
     mv ~/.nixpkgs/darwin-configuration.nix ~/.nixpkgs/darwin-configuration.nix.backup
-    ln -s ~/dev/notes/darwin-configuration.nix ~/.nixpkgs/darwin-configuration.nix
+    ln -s ~/dev/notes/nixosx/darwin-configuration.nix ~/.nixpkgs/darwin-configuration.nix
 
 Install packages
 
