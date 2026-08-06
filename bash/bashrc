@@ -5,5 +5,16 @@ alias gcmd='git commit -m `date +%Y%m%d-%H%M%S`'
 # You can also `gpob --force` and it will force push
 alias gpob='git push origin `git rev-parse --abbrev-ref HEAD`'
 
+# grh - git reset head. Defaults to 1 without specifying how many, but will reset by any positive integer.
+# grh 2 will go back 2 commits
+function grh () {
+  local count="${1:-1}"
+  if ! [[ "$count" =~ ^[0-9]+$ ]] || [ "$count" -eq 0 ]; then
+    echo "Error: Please provide a valid positive integer." >&2
+    return 1
+  fi
 
 
+  # Ensure the input is a positive integer
+  git reset "HEAD~$count"
+}
