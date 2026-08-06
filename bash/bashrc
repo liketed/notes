@@ -1,0 +1,9 @@
+# git commit -m date # I.e. I dont care what the commit message is as I am going to rebase / rewrite later
+alias gcmd='git commit -m `date +%Y%m%d-%H%M%S`'
+
+# git push origin $branch name (current branch name goes to remote of same name)
+# You can also `gpob --force` and it will force push
+alias gpob='git push origin `git rev-parse --abbrev-ref HEAD`'
+
+
+
