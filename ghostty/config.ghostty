@@ -1,0 +1,5 @@
+copy-on-select=clipboard
+app-notifications=no-clipboard-copy
+scrollback-limit = 30000000
+selection-word-chars = " \t'\"│`|:,()[]{}<>$"
+font-feature = -calt
