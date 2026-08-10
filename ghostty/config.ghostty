@@ -7,3 +7,4 @@ font-feature = -calt
 
 keybind = alt+v=paste_from_clipboard
 keybind = alt+t=new_tab
+keybind = alt+k=clear_screen
