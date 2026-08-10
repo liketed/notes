@@ -2,4 +2,8 @@ copy-on-select=clipboard
 app-notifications=no-clipboard-copy
 scrollback-limit = 30000000
 selection-word-chars = " \t'\"│`|:,()[]{}<>$"
+# Removes combining of characters to make singular characters, like != becomes a strange looking single character.
 font-feature = -calt
+
+keybind = alt+v=paste_from_clipboard
+keybind = alt+t=new_tab
