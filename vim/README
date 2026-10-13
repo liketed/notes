@@ -15,3 +15,6 @@ Visual mode text only replacement. Highlight the text you want, hit colon, remov
 This replaces double with single quotes in highlighted area. 
     :%s/\%V"/'/g
 
+
+
+Checkout nvchad
